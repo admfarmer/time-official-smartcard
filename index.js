@@ -1,6 +1,6 @@
 // naphattharawat@gmail.com
 const fse = require('fs-extra');
-const { Reader } = require('@dogrocker/thaismartcardreader')
+const { Reader } = require('@tanjaae/thaismartcardreader')
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const myReader = new Reader()
 let urlAPI;
@@ -34,7 +34,7 @@ fse.readJson('./config.json')
     })
 
     myReader.on('card-removed', (err) => {
-      var data = null;
+      var data =null;
       var xhr = new XMLHttpRequest();
       xhr.withCredentials = true;
       xhr.open("DELETE", `${urlAPI}/workTime/profile`);
@@ -45,16 +45,19 @@ fse.readJson('./config.json')
 
     myReader.on('card-inserted', async (person) => {
       console.log(person);
-      // var data;
+	  var xx = person;
+      //console.log(person.getCid());
+      //console.log(person.getNameTH());
+      //console.log(person.getDoB());
 
-      const cid = await person.getCid()
-      const thName = await person.getNameTH()
-      const dob = await person.getDoB()
+      const cid = await xx.getCid();
+      const thName = await xx.getNameTH();
+      const dob = await xx.getDoB();
 
-      console.log(`CitizenID: ${cid}`)
-      console.log(`THName: ${thName.prefix} ${thName.firstname} ${thName.lastname}`)
-      console.log(`DOB: ${dob.day}/${dob.month}/${dob.year}`)
-      console.log('=============================================')
+      console.log(`CitizenID: ${cid}`);
+      console.log(`THName: ${thName.prefix} ${thName.firstname} ${thName.lastname}`);
+      console.log(`DOB: ${dob.day}/${dob.month}/${dob.year}`);
+      console.log('=============================================');
 
       var xhr = new XMLHttpRequest();
       var data = `&cid=${cid}`;
