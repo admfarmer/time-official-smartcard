@@ -11,6 +11,9 @@ sudo apt-get install pcscd
 ```
 
 ```
+## windows
+npm install --global windows-build-tools
+
 npm i pm2 -g
 git clone https://github.com/mophos/queue-kiosk-smartcard.git 
 cd q4u-kiosk-smartcard
