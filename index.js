@@ -44,7 +44,7 @@ fse.readJson('./config.json')
     })
 
     myReader.on('card-inserted', async (person) => {
-      // console.log(person);
+      console.log(person);
       // var data;
 
       const cid = await person.getCid()
