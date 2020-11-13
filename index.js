@@ -1,4 +1,3 @@
-// naphattharawat@gmail.com
 const fse = require('fs-extra');
 const { Reader } = require('@tanjaae/thaismartcardreader')
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
@@ -7,9 +6,7 @@ let urlAPI;
 
 fse.readJson('./config.json')
   .then(json => {
-    kioskId = json.kioskId;
     urlAPI = json.urlAPI;
-    token = json.token;
     console.log(urlAPI);
 
 
@@ -34,7 +31,7 @@ fse.readJson('./config.json')
     })
 
     myReader.on('card-removed', (err) => {
-      var data =null;
+      var data = ' ';
       var xhr = new XMLHttpRequest();
       xhr.withCredentials = true;
       xhr.open("DELETE", `${urlAPI}/workTime/profile`);
@@ -45,25 +42,23 @@ fse.readJson('./config.json')
 
     myReader.on('card-inserted', async (person) => {
       console.log(person);
-	  var xx = person;
-      //console.log(person.getCid());
-      //console.log(person.getNameTH());
-      //console.log(person.getDoB());
+	  var info = person;
 
-      const cid = await xx.getCid();
-      const thName = await xx.getNameTH();
-      const dob = await xx.getDoB();
+	  const cid = await info.getCid();
+      const nameTH = await info.getNameTH();
+	  const dob = await info.getDoB();
 
-      console.log(`CitizenID: ${cid}`);
-      console.log(`THName: ${thName.prefix} ${thName.firstname} ${thName.lastname}`);
+	  console.log(`CitizenID: ${cid}`);
+	  console.log(`THName: ${nameTH.prefix} ${nameTH.firstname} ${nameTH.lastname}`);
       console.log(`DOB: ${dob.day}/${dob.month}/${dob.year}`);
+
       console.log('=============================================');
 
       var xhr = new XMLHttpRequest();
       var data = `&cid=${cid}`;
-      data += `&title=${thName.prefix}`;
-      data += `&fname=${thName.firstname}`;
-      data += `&lname=${thName.lastname}`;
+      data += `&title=${nameTH.prefix}`;
+      data += `&fname=${nameTH.firstname}`;
+      data += `&lname=${nameTH.lastname}`;
       data += `&birthDate=${dob.day}/${dob.month}/${dob.year}`;
       xhr.withCredentials = true;
 
