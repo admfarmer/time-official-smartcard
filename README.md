@@ -1,4 +1,4 @@
-# queue-kiosk-smartcard
+# time-official-smartcard
 
 
 ## Installation (Raspberry Pi)
@@ -15,8 +15,8 @@ sudo apt-get install pcscd
 npm install --global windows-build-tools
 
 npm i pm2 -g
-git clone https://github.com/mophos/queue-kiosk-smartcard.git 
-cd q4u-kiosk-smartcard
+git clone https://github.com/admfarmer/time-official-smartcard.git 
+cd time-official-smartcard
 npm i
 npm start
 ```
