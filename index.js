@@ -7,9 +7,7 @@ let urlAPI;
 
 fse.readJson('./config.json')
   .then(json => {
-    kioskId = json.kioskId;
     urlAPI = json.urlAPI;
-    token = json.token;
     console.log(urlAPI);
 
 
@@ -45,14 +43,11 @@ fse.readJson('./config.json')
 
     myReader.on('card-inserted', async (person) => {
       console.log(person);
-      var xx = person;
-      //console.log(person.getCid());
-      //console.log(person.getNameTH());
-      //console.log(person.getDoB());
+      var info = person;
 
-      const cid = await xx.getCid();
-      const thName = await xx.getNameTH();
-      const dob = await xx.getDoB();
+      const cid = await info.getCid();
+      const thName = await info.getNameTH();
+      const dob = await info.getDoB();
 
       console.log(`CitizenID: ${cid}`);
       console.log(`THName: ${thName.prefix} ${thName.firstname} ${thName.lastname}`);
