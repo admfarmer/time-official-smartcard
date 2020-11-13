@@ -49,16 +49,16 @@ fse.readJson('./config.json')
             const dob = await info.getDoB();
 
             console.log(`CitizenID: ${cid}`);
-            console.log(`THName: ${nameTH.prefix} ${nameTH.firstname} ${nameTH.lastname}`);
+            console.log(`THName: ${thName.prefix} ${thName.firstname} ${thName.lastname}`);
             console.log(`DOB: ${dob.day}/${dob.month}/${dob.year}`);
 
             console.log('=============================================');
 
             var xhr = new XMLHttpRequest();
             var data = `&cid=${cid}`;
-            data += `&title=${nameTH.prefix}`;
-            data += `&fname=${nameTH.firstname}`;
-            data += `&lname=${nameTH.lastname}`;
+            data += `&title=${thName.prefix}`;
+            data += `&fname=${thName.firstname}`;
+            data += `&lname=${thName.lastname}`;
             data += `&birthDate=${dob.day}/${dob.month}/${dob.year}`;
             xhr.withCredentials = true;
 
